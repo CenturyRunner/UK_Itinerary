@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>UK Travel Itinerary Map: August 20 - September 7, 2025</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+<style>
+  html, body { height: 100%; margin: 0; }
+  #map { width: 100%; height: 100%; }
+  .legend-box {
+    position: fixed;
+    bottom: 50px;
+    left: 50px;
+    width: 250px;
+    border: 2px solid gray;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 9999;
+    font-size: 14px;
+    line-height: 1.5em;
+  }
+</style>
+</head>
+<body>
+<h3 align="center" style="font-size:16px"><b>UK Travel Itinerary Map: August 20 - September 7, 2025</b></h3>
+<div id="map"></div>
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+
+<script>
+var map = L.map('map').setView([52.5, -1.5], 6);
+
+// Base layer
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: '© OpenStreetMap contributors'
+}).addTo(map);
+
+// Marker styles
+var londonIcon = L.AwesomeMarkers.icon({icon: 'star', markerColor: 'blue', prefix: 'fa'});
+var countrysideIcon = L.AwesomeMarkers.icon({icon: 'flag', markerColor: 'green', prefix: 'fa'});
+var cruiseIcon = L.AwesomeMarkers.icon({icon: 'ship', markerColor: 'red', prefix: 'fa'});
+var accommodationIcon = L.AwesomeMarkers.icon({icon: 'home', markerColor: 'yellow', prefix: 'fa'});
+var carIcon = L.AwesomeMarkers.icon({icon: 'car', markerColor: 'orange', prefix: 'fa'});
+var cruisePortIcon = L.AwesomeMarkers.icon({icon: 'anchor', markerColor: 'purple', prefix: 'fa'});
+
+// London markers (removed generic London marker)
+// Instead, add specific London attractions if desired, or skip
+
+// Countryside markers
+L.marker([51.4839, -0.6044], {icon: countrysideIcon}).addTo(map).bindPopup('Windsor Castle');
+L.marker([51.7520, -1.2577], {icon: countrysideIcon}).addTo(map).bindPopup('Oxford University');
+L.marker([51.7581, -1.8315], {icon: countrysideIcon}).addTo(map).bindPopup('Cotswolds');
+L.marker([51.3811, -2.3590], {icon: countrysideIcon}).addTo(map).bindPopup('Bath');
+L.marker([51.1789, -1.8262], {icon: countrysideIcon}).addTo(map).bindPopup('Stonehenge');
+L.marker([51.3532, -1.9946], {icon: accommodationIcon}).addTo(map).bindPopup('Wiltshire Airbnb');
+L.marker([50.8998, -1.4044], {icon: cruiseIcon}).addTo(map).bindPopup('Southampton Cruise Port');
+
+// Car rental
+L.marker([51.4965, -0.1439], {icon: carIcon}).addTo(map).bindPopup('Car Rental - London Victoria Station');
+
+// Cruise ports
+L.marker([51.8417, -8.2977], {icon: cruisePortIcon}).addTo(map).bindPopup('Cork, Ireland');
+L.marker([53.3092, -4.6325], {icon: cruisePortIcon}).addTo(map).bindPopup('Holyhead, Wales');
+L.marker([54.6079, -5.9264], {icon: cruisePortIcon}).addTo(map).bindPopup('Belfast, Northern Ireland');
+L.marker([55.9565, -4.7718], {icon: cruisePortIcon}).addTo(map).bindPopup('Glasgow, Scotland');
+L.marker([58.9847, -2.9581], {icon: cruisePortIcon}).addTo(map).bindPopup('Orkney Islands, Scotland');
+L.marker([56.0107, -3.4042], {icon: cruisePortIcon}).addTo(map).bindPopup('Edinburgh, Scotland');
+
+// Legend box
+var legend = document.createElement('div');
+legend.className = 'legend-box';
+legend.innerHTML = "<b>Legend</b><br>" +
+                   "<i class='fa fa-star' style='color:blue'></i> London<br>" +
+                   "<i class='fa fa-flag' style='color:green'></i> Countryside<br>" +
+                   "<i class='fa fa-ship' style='color:red'></i> Southampton (Cruise)<br>" +
+                   "<i class='fa fa-anchor' style='color:purple'></i> Cruise Ports<br>" +
+                   "<i class='fa fa-home' style='color:yellow'></i> Accommodations<br>" +
+                   "<i class='fa fa-car' style='color:orange'></i> Car Rental<br>";
+document.body.appendChild(legend);
+</script>
+</body>
+</html>

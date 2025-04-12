@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>London Itinerary Map</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+<style>
+  html, body { height: 100%; margin: 0; }
+  #map { width: 100%; height: 100%; }
+  .legend-box {
+    position: fixed;
+    bottom: 50px;
+    left: 50px;
+    width: 200px;
+    border: 2px solid gray;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 9999;
+    font-size: 14px;
+    line-height: 1.5em;
+  }
+</style>
+</head>
+<body>
+<h3 align="center" style="font-size:16px"><b>London Itinerary Map</b></h3>
+<div id="map"></div>
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+
+<script>
+var map = L.map('map').setView([51.5074, -0.1278], 13);
+
+// Base layer
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: '© OpenStreetMap contributors'
+}).addTo(map);
+
+// Marker styles
+var landmarkIcon = L.AwesomeMarkers.icon({icon: 'star', markerColor: 'blue', prefix: 'fa'});
+var rentalIcon = L.AwesomeMarkers.icon({icon: 'car', markerColor: 'orange', prefix: 'fa'});
+var airbnbIcon = L.AwesomeMarkers.icon({icon: 'home', markerColor: 'green', prefix: 'fa'});
+
+// London landmarks
+L.marker([51.5074, -0.1278], {icon: landmarkIcon}).addTo(map).bindPopup('London Center');
+L.marker([51.5014, -0.1419], {icon: landmarkIcon}).addTo(map).bindPopup('Buckingham Palace');
+L.marker([51.4993, -0.1273], {icon: landmarkIcon}).addTo(map).bindPopup('Westminster Abbey');
+L.marker([51.5007, -0.1246], {icon: landmarkIcon}).addTo(map).bindPopup('Big Ben & Palace of Westminster');
+L.marker([51.5055, -0.0754], {icon: landmarkIcon}).addTo(map).bindPopup('Tower of London');
+L.marker([51.5055, -0.0865], {icon: landmarkIcon}).addTo(map).bindPopup('London Bridge');
+L.marker([51.5033, -0.1195], {icon: landmarkIcon}).addTo(map).bindPopup('London Eye');
+L.marker([51.5138, -0.0984], {icon: landmarkIcon}).addTo(map).bindPopup('Borough Market');
+L.marker([51.5101, -0.1340], {icon: landmarkIcon}).addTo(map).bindPopup('Piccadilly Circus');
+L.marker([51.5115, -0.1160], {icon: landmarkIcon}).addTo(map).bindPopup('Covent Garden');
+L.marker([51.5308, -0.1774], {icon: landmarkIcon}).addTo(map).bindPopup('Abbey Road Crossing');
+L.marker([51.5089, -0.1283], {icon: landmarkIcon}).addTo(map).bindPopup('St. Paul\'s Cathedral');
+L.marker([51.5081, -0.0972], {icon: landmarkIcon}).addTo(map).bindPopup('Shakespeare\'s Globe Theatre');
+
+// Car rental location
+L.marker([51.4965, -0.1439], {icon: rentalIcon}).addTo(map).bindPopup('Car Rental - London Victoria Station');
+
+// Airbnbs
+L.marker([51.4887, -0.1376], {icon: airbnbIcon}).addTo(map).bindPopup('Airbnb - 4 Lupus Street, Pimlico (Aug 20-22)');
+L.marker([51.4912, -0.1405], {icon: airbnbIcon}).addTo(map).bindPopup('Airbnb - Denbigh Street (Sept 4-7)');
+
+// Legend box
+var legend = document.createElement('div');
+legend.className = 'legend-box';
+legend.innerHTML = "<b>Legend</b><br>" +
+                   "<i class='fa fa-star' style='color:blue'></i> Landmarks<br>" +
+                   "<i class='fa fa-car' style='color:orange'></i> Car Rental<br>" +
+                   "<i class='fa fa-home' style='color:green'></i> Airbnb<br>";
+document.body.appendChild(legend);
+</script>
+</body>
+</html>
