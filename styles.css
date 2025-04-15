@@ -27,7 +27,7 @@ body {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 10px;
 }
 
 h1, h2, h3 {
@@ -132,8 +132,8 @@ main {
 }
 
 section {
-    margin: 40px 0;
-    padding: 20px;
+    margin: 20px 0;
+    padding: 10px;
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -147,8 +147,8 @@ section h2 {
 
 /* Itinerary Styles */
 .itinerary-day {
-    margin-bottom: 30px;
-    padding-bottom: 20px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -281,8 +281,8 @@ section h2 {
 
 /* Map Styles */
 .map-container {
-    height: 600px;
-    margin-bottom: 20px;
+    height: 350px;
+    margin-bottom: 10px;
     border: 1px solid var(--border-color);
     border-radius: 8px;
     overflow: hidden;
@@ -339,12 +339,12 @@ section h2 {
 
 /* Timeline Styles */
 .timeline-container {
-    margin: 20px 0;
+    margin: 10px 0;
     text-align: center;
 }
 
 .timeline-container img {
-    max-width: 100%;
+    max-width: 80%;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
@@ -445,33 +445,94 @@ footer {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-    header h1 {
-        font-size: 2.2rem;
-    }
-    
-    header h2 {
-        font-size: 1.4rem;
-    }
-    
-    nav ul {
+    header {
+        padding: 10px 0 8px 0;
+        min-height: unset;
+        max-height: 180px;
+        display: flex;
         flex-direction: column;
+        justify-content: center;
         align-items: center;
+        background-size: cover;
+        background-position: center;
     }
-    
-    nav li {
-        margin: 0;
+    header .container {
+        padding: 0;
+    }
+    header h1 {
+        font-size: 1.3rem;
+        margin-bottom: 4px;
+        line-height: 1.1;
+    }
+    header h2 {
+        font-size: 1rem;
+        margin-bottom: 4px;
+        line-height: 1.1;
+    }
+    header .dates {
+        font-size: 0.9rem;
+        margin-bottom: 0;
+    }
+    header::before {
+        background-color: rgba(29, 53, 87, 0.96);
+    }
+
+    /* Optionally remove background image for clarity on very small screens */
+    @media (max-width: 480px) {
+        header {
+            background-image: none !important;
+            background-color: var(--primary-color);
+        }
+        header::before {
+            background: none;
+        }
+    }
+
+    nav .container {
+        position: relative;
+    }
+    nav ul {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        align-items: center;
+        justify-content: flex-start;
+        overflow-x: auto;
+        white-space: nowrap;
+        background-color: var(--secondary-color);
+        position: static;
         width: 100%;
-        text-align: center;
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+        z-index: 150;
+        scrollbar-width: none; /* Firefox */
     }
-    
+    nav ul::-webkit-scrollbar {
+        display: none; /* Chrome, Safari */
+    }
+    nav li {
+        margin: 0 6px;
+        width: auto;
+        text-align: left;
+        border-bottom: none;
+        flex: 0 0 auto;
+    }
+    nav a {
+        padding: 12px 10px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 120px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
     .attractions-section ul {
         grid-template-columns: 1fr;
     }
-    
     .map-container {
         height: 400px;
     }
-    
     .cruise-details-grid {
         grid-template-columns: 1fr;
     }
@@ -492,36 +553,82 @@ section {
     position: relative;
 }
 
-/* Accommodations Styles */
-.accommodation-card {
-    background-color: #f9f9f9;
+/* Transportation Section Card Styles */
+
+/* Ensure Transportation Details section matches other sections */
+#transportation.container {
+    background-color: white;
+    border-radius: 8px;
+    margin: 20px 0;
+    padding: 10px;
+}
+
+/* Ensure Accommodations section background is white */
+/* Rule removed as it's duplicated and simplified below */
+
+.transportation-section {
+    background-color: white !important;
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    padding: 20px;
+    padding: 10px;
     margin-bottom: 20px;
+    box-shadow: none !important;
+    /* Remove width constraints so it inherits from parent */
+}
+#accommodations.container {
+    background-color: white; /* Removed !important */
+    border-radius: 8px;
+    margin: 20px 0;
+    padding: 10px;
+    box-shadow: none; /* Removed !important */
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+#transportation.container {
+    background-color: white !important;
+    border-radius: 8px;
+    margin: 20px 0;
+    padding: 0;
+    box-shadow: none !important;
+    max-width: none;
+    width: 100vw;
+    margin-left: 0;
+    margin-right: 0;
+    display: block;
 }
 
-.accommodation-card h3 {
+/* Accommodations Entry Styles to match Itinerary */
+.accommodation-entry {
     margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.accommodation-entry:last-child {
+    border-bottom: none;
+}
+
+.accommodation-entry h3 {
     color: var(--secondary-color);
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    border-left: 4px solid var(--accent-color);
 }
 
-.accommodation-info ul {
-    list-style-type: none;
-    padding-left: 20px;
+.accommodation-entry ul,
+.accommodation-entry li {
+    list-style: none !important;
+    list-style-type: none !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
 }
-
-.accommodation-info li {
+.accommodation-entry li {
+    list-style-type: none !important;
+}
+.accommodation-entry li {
     margin-bottom: 8px;
     position: relative;
     padding-left: 25px;
-}
-
-.accommodation-info li::before {
-    content: '•';
-    position: absolute;
-    left: 0;
-    color: var(--accent-color);
-    font-size: 1.2em;
-    line-height: 1;
 }
